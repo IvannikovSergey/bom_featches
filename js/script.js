@@ -94,17 +94,37 @@ window.addEventListener('DOMContentLoaded', function () {
 
     let more = document.querySelector('.more'),
         overlay = document.querySelector('.overlay'),
-        close = document.querySelector('.popup-close');
+        close = document.querySelector('.popup-close'),
+        btnDescription = document.querySelectorAll('.description-btn');
 
-    more.addEventListener('click', function () {
+    let show = function showModal() {
         overlay.style.display = 'block';
         this.classList.add('more-splash');
         document.body.style.overflow = 'hidden'; // запрет прокрутки документа при открытом модальном окне
-    });
+    }
 
-    close.addEventListener('click', function () {
+    let hide = function hideModal() {
         overlay.style.display = 'none';
         more.classList.remove('more-splash');
         document.body.style.overflow = '';
-    });
+    }
+
+    more.addEventListener('click', show);
+    close.addEventListener('click', hide);
+    
+    for (let i of btnDescription) {
+        i.addEventListener('click', show);
+    }
+
+    // more.addEventListener('click', function () {
+    //     overlay.style.display = 'block';
+    //     this.classList.add('more-splash');
+    //     document.body.style.overflow = 'hidden'; // запрет прокрутки документа при открытом модальном окне
+    // });
+
+    // close.addEventListener('click', function () {
+    //     overlay.style.display = 'none';
+    //     more.classList.remove('more-splash');
+    //     document.body.style.overflow = '';
+    // });
 });
